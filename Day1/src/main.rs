@@ -1,5 +1,28 @@
+use std::fmt::format;
+
+const SECOND_IN_MINUTES: u8 = 60;
+
+// Function in Rust.
+fn add_explicit(x: i32, y: i32) -> i32 {
+    return x + y;
+}
+
+fn add_idiomatic(x: i32, y: i32) -> i32 {
+    x + y
+}
+
+// Since, We are not returning any thing fro the below function so the default return type will be unit type and return tuple like this ().
+fn say_hello() {
+    println!("hello");
+}
+
+// fn say_hello_1(name: &str) -> String {
+//     format!("Hello, {}!", name);
+
 fn main() {
     // In Rust, By default every variables is immutable.
+
+    // Start of Inner block (scope).
     let name = "maxime";
     let age: u8 = 31;
     let language = "Rust";
@@ -26,4 +49,38 @@ fn main() {
     // Level of Pokemon has been increased so.
     level = level + 5;
     println!("Name of Pokemon: {namepok} and new Level is: {level}");
+
+    // Const in Rust.
+    let mut elapsed = 0;
+
+    println!("Start:  {elapsed} seconds");
+
+    elapsed += SECOND_IN_MINUTES;
+
+    println!("After 1 minutes: {elapsed} seconds");
+
+    let x = 5;
+    println!("Outer x = {x}");
+
+    {
+        // start of the scope.
+        let y1 = 20;
+        let x1 = 99;
+
+        println!("Inner x = {x1}, Inner y = {y1}");
+
+        // End of the scope, y is dropped.
+    }
+
+    let sum_of_two_numbers = add_explicit(2, 3);
+    print!("sum of two number is: {sum_of_two_numbers}");
+
+    let sum_of_two_numbers_idiomatic = add_idiomatic(2, 5);
+    print!("sum of two number is: {sum_of_two_numbers_idiomatic}");
+
+    let c = say_hello();
+    println!("c: {:?}", c);
 }
+
+// Scopes and Blocks.
+// A block is the area between an opening curly brace and closing curly brace.
