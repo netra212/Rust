@@ -1,5 +1,3 @@
-use std::fmt::format;
-
 const SECOND_IN_MINUTES: u8 = 60;
 
 // Function in Rust.
@@ -80,6 +78,28 @@ fn main() {
 
     let c = say_hello();
     println!("c: {:?}", c);
+
+    // Arrays in Rust.
+    let names = ["yagya", "radhika", "netra"];
+    println!("\nNames :{}", names[0]);
+    println!("Names :{}", names[1]);
+    println!("Names :{}", names[2]);
+
+    // len.
+    println!("Total: {}", names.len());
+
+    // Destructuring data from a tuple.
+    let person_details = ("Alice", 25, "Software Engineer", 5.5);
+
+    // Access the data from the tuple using index.
+    println!("\nName: {}", person_details.0);
+    println!("Age: {}", person_details.1);
+    println!("Profession: {}", person_details.2);
+    println!("Height: {}", person_details.3);
+
+    let (name, profession, age, height) = person_details;
+    println!("After Destructuring");
+    println!("\nname: {name}, profession: {profession}, age: {age}, and height: {height}");
 }
 
 // Scopes and Blocks.
