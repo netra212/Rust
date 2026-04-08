@@ -56,4 +56,17 @@ fn main() {
     // 1. Replace the placeholder values with correct animal names
     // 2. Fix the index increment to move through the array
     // 3. Fix the break condition to stop when all animals are printed
+
+    let animals = ["cat", "dog", "elephant"];
+    let mut index = 0;
+    loop {
+        println!("Animals is: {}", animals[index]);
+        // Incrementing the value of index.
+        index += 1;
+
+        // stopping condition of loop.
+        if index >= animals.len() {
+            break;
+        }
+    }
 }
