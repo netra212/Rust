@@ -24,6 +24,18 @@ fn main() {
 
     let s4 = s1.to_string();
     println!("{s4}");
+
+    let original = String::from("hello");
+    let clone = original.clone();
+
+    println!("original: {original}");
+    println!("original on the stack address, {:p}", &original);
+    println!("original on the heap, {:p}", original.as_ptr());
+
+    println!();
+    println!("clone: {clone}");
+    println!("original on the stack address, {:p}", &original);
+    println!("original on the heap, {:p}", original.as_ptr());
 }
 
 fn takes_ownership(string_value: String) {
