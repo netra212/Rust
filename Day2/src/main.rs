@@ -80,4 +80,8 @@ fn main() {
 
     // Primitive Data types.
     // Number, Floating, Boolean, Character, tuples,arrays.
+
+    let mut str1 = String::from("Netra Khatri");
+    str1.push_str("Hello");
+    println!("{} {}", str1.len(), str1.capacity());
 }
