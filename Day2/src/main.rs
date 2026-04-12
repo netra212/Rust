@@ -69,4 +69,15 @@ fn main() {
             break;
         }
     }
+
+    // Exercise:-
+    let a: i8 = 120; // By default it takes 8 bytes of memory. i -> means signed integer. 
+    let b: u16 = 20; // u -> unsigned means non-negative integers.
+    let c: f32 = 12.19;
+    let d: bool = true;
+    let ch: char = 'n';
+    println!("a={}, b={}, c={}, d={}, ch={}", a, b, c, d, ch);
+
+    // Primitive Data types.
+    // Number, Floating, Boolean, Character, tuples,arrays.
 }
