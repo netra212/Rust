@@ -19,7 +19,7 @@ fn main() {
         }
     }
 
-    // while loop.
+    // While loop.
     let mut number1 = 3;
     println!("---- While Loop in Rust ---- ");
     while number1 > 0 {
@@ -84,4 +84,53 @@ fn main() {
     let mut str1 = String::from("Netra Khatri");
     str1.push_str("Hello");
     println!("{} {}", str1.len(), str1.capacity());
+
+    let p = 90;
+    let d = p;
+    println!("{} {}", d, p);
+    let ans = add_number(3, 4);
+    println!("{}", ans);
+
+    // let str2 = String::from("Hello");
+    // finder(str2);
+
+    // let mut strike = String::from("Strike is Comming");
+
+    // // Only read the data.
+    // immutable_borrow(&strike);
+
+    // // mutable_borrowing (Have both Read and Write Permission).
+    // mutable_borrow(&mut strike);
+
+    // let r2 = &mut strike;
+    // let r1 = &strike;
+
+    // println!("{} {}", r1, r2);
+    let arr = [10, 20, 30, 40, 50, 60];
+    // println!("{}", arr[0]);
+    for element in arr {
+        println!("{}", element);
+    }
+
+    for num in 1..=5 {
+        print!("{}", num);
+    }
+}
+
+// fn mutable_borrow(s: &mut String) {
+//     println!("\nMutable");
+//     s.push_str(" --> Hi");
+//     println!("{}", s);
+// }
+// fn immutable_borrow(s: &String) {
+//     print!("{}", s);
+// }
+
+// fn finder(s: String) {
+//     println!("{}", s);
+//     // rust inject some sort of code here, similar to delete keyword in c++, which drops the function.
+// }
+
+fn add_number(x: i32, y: i32) -> i32 {
+    return x + y;
 }
