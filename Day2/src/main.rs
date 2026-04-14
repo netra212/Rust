@@ -115,6 +115,25 @@ fn main() {
     for num in 1..=5 {
         print!("{}", num);
     }
+
+    // Day 4: Rust Learning.
+    println!("\n\n------ DAY - 4 ------\n");
+    let a1 = "Confused String"; // a1 will be treated as a static variable and will not store in either stack or heap. 
+    // a1 = "Confused String"; will not be store in stack because in stack, we store only fixed data size but this is not fixed data size. In stack, we cannot perform any operations like push, pop and so on.
+    // In stack, we cannot store a1 = Confused String";
+    println!("\n{}", a1);
+
+    println!("\n\n------- Vector (Non-Primitive Type) in Rust -------");
+    // let mut arr: Vec<i32> = Vec::new();
+    let mut arr = vec![10, 20, 30];
+    arr.push(40);
+    println!("{:?}", arr);
+    println!("Length of Vector is: {}", arr.len());
+    println!("Capacity of Vector is: {}", arr.capacity());
+    println!("Pointer of Vector in Heap: {:p}", arr.as_ptr());
+    println!("Address of Vector in stack: {:p}", &arr);
+    println!("{:p}", &arr[0]); // Gives the Location of first data in heap.
+    println!("{:p}", &arr[1]); // Gives the Location of second data in heap.
 }
 
 // fn mutable_borrow(s: &mut String) {
