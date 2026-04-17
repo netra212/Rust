@@ -134,7 +134,48 @@ fn main() {
     println!("Address of Vector in stack: {:p}", &arr);
     println!("{:p}", &arr[0]); // Gives the Location of first data in heap.
     println!("{:p}", &arr[1]); // Gives the Location of second data in heap.
+
+    for num in 0..=3 {
+        println!("{}", arr[num]);
+    }
+
+    // We will not use this below for loop because this will transfer the ownerships to num. suppose, we access every number via num <- iterator, now the new owner will be `num`.
+    // for num in arr{
+    //     println!("{}", arr);
+    // }
+
+    // The below for loop will be use for the most of the time because, it will borrow only for the read purpose but does not transfer ownerships.
+    for num in &arr {
+        println!("{}", num);
+    }
+
+    let mut v: Vec<String> = Vec::new();
+    v.push(String::from("Rohit"));
+    v.push(String::from("Negi"));
+    v.push(String::from("Launch"));
+    v.push(String::from("Strike"));
+
+    v.insert(2, String::from("Mahish Ji"));
+
+    println!("{:?}", v);
+    println!("{:?}", v.get(1));
+
+    // Slice in Rust.
+    // let mut vec1 = vec![30, 70, 90, 100, 600];
+    // let data: &[i32] = &vec1[1..3];
+    // println!("{:?}", data);
+
+    // let sum = sum_two_number(&mut vec1[0..4]);
+    // println!("{}", sum);
 }
+
+// fn sum_two_number(arr: &[i32]) -> i32 {
+//     let sum = 0;
+//     for num in arr {
+//         sum += num;
+//     }
+//     sum;
+// }
 
 // fn mutable_borrow(s: &mut String) {
 //     println!("\nMutable");
