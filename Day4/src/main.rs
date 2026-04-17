@@ -10,6 +10,37 @@ enum Traffic {
     Yellow,
 }
 
+impl Traffic{
+    // constructor: value initialize. 
+    fn new() -> Self{
+        Traffic::Red
+    }
+
+    // Method on the enum. 
+    fn next(&self) -> Traffic{
+        match self{
+            Traffic:: Red => Traffic::Green,
+            Traffic:: Yellow => Traffic::Red, 
+            Traffic:: Green => Traffic::Yellow
+        }
+    }
+
+    fn duration(&self) -> u32{
+        match self{
+            Traffic::Red => 60, 
+            Traffic::Yello => 60, 
+            Traffic::Green => 10
+        }
+    }
+
+    fn can_cross(&self) -> bool{
+        match self{
+            Traffic::Green => true,
+            _ => false
+        }
+    } 
+}
+
 // enum -> can hold value.
 enum Message {
     Quit, // No data
@@ -26,10 +57,10 @@ fn matching(msg: Message) {
     }
 }
 
-enum Option<T> {
+enum Option<T, E> {
     Some(T), // T can be anything either String or tuples, T -> template. 
     None,
-    Age{x:i32, y:i32}
+    Age{x:E, y:E}
 }
 
 fn matching_option<T>(msg: &Option<T>){
@@ -37,6 +68,19 @@ fn matching_option<T>(msg: &Option<T>){
         Option::Some(value) => println!("{}", value),
         Option::None => println!("Nothing to display"),
         Option::Age(x, y) => println!("{} {}", x, y),
+    }
+}
+
+enum Result<T, E> {
+    Ok(T), 
+    Error(E)
+}
+
+fn divide(x: i32, y: i32) -> Result <i32, String>{
+    if y==0 {
+        return Result::Error(String::from("Division not possible"));
+    }else{
+        return Result::Ok(x/y);
     }
 }
 
@@ -71,11 +115,26 @@ fn main() {
     matching(&msg3);
 
     // Template with Options. 
-    let m1 = Option::Some(String::from("Hello Ji"));
-    let m2: Option<i32> = Number::Age{x:20, y:40};
-    let m3: Option<i32> = Option::None;
+    let m1: Option<String, i32> = Option::Some(String::from("Hello Ji"), 23);
+    let m2: Option<String, i32> = Number::Age{x:20, y:40};
+    let m3: Option<String, i32> = Option::None;
 
     matching_option(&m1);
     matching_option(&m2);
     matching_option(&m3);
+
+    // 
+    let result:Result<i32, String> = divide(10, 2);
+    match result{
+        Result::Ok(value) => println!("{}", value),
+        Result::Error(error) => println!("{}", error),
+    }
+
+    // 
+    let mut light = Traffic::new();
+    light = light.next();
+    let dur = light.duration();
+
+    println!("{}", dur);
+    println!("{}", light.can_cross());
 }
