@@ -1,112 +1,60 @@
 fn main() {
-    println!("Hello, world!");
+    println!("Hello from the main function!");
 
-    let mut message = String::from("Hello"); // I INTEND to change this later
-    println!("{}", message); // Prints "Hello"
+    // Calling another function
+    another_function();
 
-    message = String::from("World"); // This is now allowed
-    println!("{}", message); // Prints "World"
+    print_value(5); // Pass the value 5
+    print_sum(10, 20); // Pass two values
 
-    // Integers (i8, u8, i32, u32, i64, u64, isize, usize)
-    let a: i32 = -10; // 'i' for signed, 'u' for unsigned
-    let b: u64 = 100;
+    let five = give_me_five();
+    println!("The function returned: {}", five);
 
-    // Floating-point numbers
-    let c: f64 = 3.14; // f32 is also available
+    let sum = add(10, 20);
+    println!("The sum is: {}", sum);
 
-    // Boolean
-    let d: bool = true;
+    let sum = add(10, 20);
+    println!("The sum is: {}", sum);
 
-    // Character (a single Unicode scalar value)
-    let e: char = '🦀';
+    let number = 7;
 
-    let x = 5;
-    let y = x; // A copy of 5 is made and assigned to y.
+    if number < 5 {
+        println!("Condition was true");
+    } else {
+        println!("Condition was false");
+    }
 
-    println!("x = {}, y = {}", x, y); // Both x and y are valid and can be used.
-
-    let my_string = String::from("Hi 🦀");
-
-    // This creates a String object on the stack, which in turn
-    // allocates memory on the heap to store "Hello, world!".
-    let s = String::from("Hello, world!");
-
-    // Tuple: A simple way to group a fixed number of values with a variety of types.
-    let tup: (i32, f64, u8) = (500, 6.4, 1);
-    let (x, y, z) = tup; // Destructuring
-    println!("The value of y is: {}", y); // Prints 6.4
-    println!("The second value is: {}", tup.1); // Access by index
-
-    // Question 1: "What happens if I don't mention the type?" (Type Inference)
-
-    // In many of our examples, we wrote let x = 5; instead of let x: i32 = 5;. How does Rust know what type x is?
-
-    // This feature is called **Type Inference**. The Rust compiler is extremely smart. It will look at the value you've provided and the context in which you use it, and it will infer the most logical type.
-
-    let num = 5; // You didn't specify a type.
-                 // The compiler thinks: "5" is a number. By default, I'll assume
-                 // the programmer wants a standard 32-bit signed integer.
-                 // So, I will infer the type of `num` to be `i32`.
-
-    let pi = 3.14; // You didn't specify a type.
-                   // The compiler thinks: "3.14" has a decimal point. By default,
-                   // I'll assume the programmer wants a standard 64-bit float.
-                   // So, I will infer the type of `pi` to be `f64`.
-
-    // This code will NOT compile!
-    // let guess = "42".parse().expect("Not a number!");
-    //
-
-    // -------------- The Three Rules of Ownership --------------
-    // Rule 1: Each value in Rust has a variable that’s called its owner.
-    // When this line executes, memory is allocated on the heap for the text "hello".
-    // The variable `s1` is created on the stack.
-    // `s1` is now the OWNER of that heap data.
-    let s1 = String::from("hello");
-
-    // Rule 2: There can only be one owner at a time.
-
-    // let s1 = String::from("hello"); // s1 owns the "hello" data on the heap.
-
-    // Here is the key moment:
-    // let s2 = s1; // What happens here?
-
-    // Now, let's try to use s1 again.
-    // This line will NOT compile!
-    // println!("s1 is: {}", s1);
-
-    // Rule 3: When the owner goes out of scope, the value will be dropped
-    {
-        // s is not valid here, it’s not yet declared
-        let s = String::from("hello"); // s is valid from this point forward
-                                       // ... do stuff with s
-    } // This scope is now over. `s` is the owner of the heap data.
-      // Because the owner is going out of scope, Rust automatically calls `drop` on `s`.
-      // The memory for "hello" is freed from the heap.
-      // s is no longer valid from this point forward.
-
-    let s = String::from("hello");
-
-    takes_ownership(s); // `s`'s ownership is moved into the function...
-                        // ...and so `s` is no longer valid here.
-
-    let x = 5;
-
-    makes_copy(x); // `x` is a type with the `Copy` trait, so a copy is made.
-                   // `x` is still valid here and can be used.
-
-    // This would fail! `s` was moved.
-    // println!("{}", s);
-
-    println!("{}", x); // This works.
+    // You can also use `else if` for multiple conditions
+    let number2 = 6;
+    if number2 % 4 == 0 {
+        println!("Number is divisible by 4");
+    } else if number2 % 3 == 0 {
+        println!("Number is divisible by 3");
+    } else {
+        println!("Number is not divisible by 4 or 3");
+    }
 }
 
-fn takes_ownership(some_string: String) {
-    // some_string comes into scope
-    println!("{}", some_string);
-} // Here, some_string goes out of scope and `drop` is called. The memory is freed.
+// This function returns a value of type i32
+fn give_me_five() -> i32 {
+    5 // No semicolon means this is the return value
+}
 
-fn makes_copy(some_integer: i32) {
-    // some_integer comes into scope
-    println!("{}", some_integer);
-} // Here, some_integer goes out of scope. Nothing special happens.
+// This function takes two i32s and returns an i32
+fn add(x: i32, y: i32) -> i32 {
+    x + y // The result of this expression is returned
+}
+
+// Defining another function
+fn another_function() {
+    println!("Hello from another function!");
+}
+
+fn print_value(x: i32) {
+    // `x` is a parameter of type i32
+    println!("The value is: {}", x);
+}
+
+fn print_sum(x: i32, y: i32) {
+    println!("The sum is: {}", x + y);
+}
