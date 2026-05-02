@@ -55,3 +55,17 @@ These are lazy -- they don't consume values until iterated.
 - rev() - Reverse the order (requires DoublEndedIterator).
 - cycle() - Repeats the iterator infinitely.
 - inspect(f) - Executes a function on each item for debugging, without modifying them. 
+
+# Consumer Methods. 
+Consumer Methods (consume the iterator)
+These methods takes ownership of the iterator and produces a final result. 
+- collect() - Collects items into a collection (e.g., Vec, HashSet).
+- for_each() - Runs a function on each element (like a for loop).
+- fold(init, f) - Reduces elements into a single value (like reduce).
+- sum(), product() - Computes the sum or prodcut of items. 
+- find(predicate) - Finds the first element that matches. 
+- any(predicate), all(predicate) - Checks conditions across elements.
+- count() - Counts the number of elements. 
+- last() - returns the last element. 
+- nth(n) - Returns the nth element (0-based).
+- partition(predicate) - Splits elements into two collections.
