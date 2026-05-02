@@ -11,3 +11,10 @@
 - sort(): sorts the elements of the vectors in ascending order. 
 - reverse(): reverse the order of the elements in the vector. 
 - clear(): clears the vector, removing all values. 
+
+
+/**
+**/
+HashMap -> an unordered key-value store in Rust that maps keys of type K to values of type V. 
+
+- It consists of key-value pairs. 
