@@ -1,7 +1,7 @@
 # Iterator. 
-- An Iterator is a value that allows you to traverse a sequence of items one at a time. 
+- An Iterator is a value that allows you to traverse a sequence of items one at a time.
 
-- In Rust, any type that implements the iterator tratir can be used in a for loop or with iterator methods like .iter(), .map(), .filter(), and .collect(), etc. 
+- In Rust, any type that implements the iterator tratir can be used in a for loop or with iterator methods like .iter(), .map(), .filter(), and .collect(), etc.
 
 # Benefits.
 - Cleaner Clode => Avoid manual indexing (for i in 0..n) - just say for item in some...
@@ -17,9 +17,41 @@ pub trait Iterator {
     fn next(&mut self) --> Option<Self::Item>;
 }
 
-
 # Adapter Methods. 
 - Used to transforms, filter or modify an iterator. They are lazy, meaning they don't do any work until the iterator is consumed. such as map, filter, take. 
 
 # Consumer Methods. 
 - Execute the iterator and produce a final result. They are eager, meaning they consume the iterator immediately. such as collect, sum, for_each...
+
+# Consume does not mean take ownership. 
+
+# Why They're Called consumer methods. 
+- They are called consumer methods because they consume the iterator itself -- meaning:
+    -> They drive the iterations forward. 
+    -> They exhaust the iterator (you can't use it again).
+    -> They produce a final result (e.g., sum, collect, count).
+
+so, the term "consumer" refers to consuming the iterator, not necessarily the original collection it came from.
+
+# 3 ways to create an iterator. 
+
+******Method******
+1. .iter() : Iterates by shared reference, Doesnot move, and types of items is: &T. 
+2. .iter_mut() : Iterates by mututal reference, Doesn't move, and Type of items is: &mut T.
+3. .into_iter() : Iterates by moving values (ownership), Moves the data and Types of items is: T. 
+
+# Adapter Methods. 
+Adapter Methods (return another iterator)
+These are lazy -- they don't consume values until iterated. 
+- map(f) - Applies a function to each them. 
+- filter(predicate) - Filters element based on a predicate. 
+- enumerate() - Yields (index, item) tuples. 
+- take(n) - Yields the first n elements. 
+- skip(n) - Skips the first n elements. 
+- chain(iter2) - Join two iterators. 
+- zip(iter2) - Pair elements from two iterators. 
+- flat_map(f) - Maps and then flattens nested iterators. 
+- peekable() - Converts into an iterator that allows peeking at the next element. 
+- rev() - Reverse the order (requires DoublEndedIterator).
+- cycle() - Repeats the iterator infinitely.
+- inspect(f) - Executes a function on each item for debugging, without modifying them. 
