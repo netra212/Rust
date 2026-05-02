@@ -1,0 +1,25 @@
+# Iterator. 
+- An Iterator is a value that allows you to traverse a sequence of items one at a time. 
+
+- In Rust, any type that implements the iterator tratir can be used in a for loop or with iterator methods like .iter(), .map(), .filter(), and .collect(), etc. 
+
+# Benefits.
+- Cleaner Clode => Avoid manual indexing (for i in 0..n) - just say for item in some...
+- Memory Efficient. 
+- Chainable operations. 
+- Safer iterations. 
+- Works with all collections.
+
+In Rust, the fundamental piece of iterator functionality comes in the forms of a trait:
+
+pub trait Iterator {
+    type Item;
+    fn next(&mut self) --> Option<Self::Item>;
+}
+
+
+# Adapter Methods. 
+- Used to transforms, filter or modify an iterator. They are lazy, meaning they don't do any work until the iterator is consumed. such as map, filter, take. 
+
+# Consumer Methods. 
+- Execute the iterator and produce a final result. They are eager, meaning they consume the iterator immediately. such as collect, sum, for_each...
