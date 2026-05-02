@@ -1,4 +1,5 @@
 use std::collections::HashMap;
+use std::collections::HashSet;
 
 fn main() {
     // let mut numbers: Vec<i32> = Vec::new();
@@ -81,4 +82,15 @@ fn main() {
 
     books.remove("The Billionaire Mindset");
     println!("Books: {books:#?}");
+
+    // HashSet: Does not takes duplicate elements.
+    let mut clothes = HashSet::new();
+    clothes.insert("Pants");
+    clothes.insert("T-shirt");
+    clothes.insert("Coat");
+
+    println!("Clothes: {clothes:#?}");
+    clothes.insert("Coat");
+
+    println!("Clothes: {clothes:#?}");
 }

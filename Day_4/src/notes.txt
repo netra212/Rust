@@ -18,3 +18,10 @@
 HashMap -> an unordered key-value store in Rust that maps keys of type K to values of type V. 
 
 - It consists of key-value pairs. 
+
+
+*****
+# HashSet:
+- A HashSet is a collection in Rust that stores unique values of type T, using a hash table for fast insertion, remove, and lookup. 
+
+- It is backed by a HashMap<T, ()> internally = the values are stored as keys, and the values are just empty().
