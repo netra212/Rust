@@ -29,4 +29,37 @@ fn main() {
     numbers1.clear();
     println!("All Elements are clear, so Length: {}", numbers1.len());
     println!("is_Empty: {}", numbers1.is_empty());
+
+    // Slices of Vectors.
+    let v: Vec<i32> = vec![1, 2, 3, 4];
+    // let s = &v[1..3];
+    let mut vec: Vec<i32> = Vec::with_capacity(6);
+    vec.push(1);
+    vec.push(2);
+    vec.push(5);
+
+    //
+    macro_rules! vec {
+        ($($x:expr), +) => ({
+            let mut v = Vec::new();
+            $(v.push($x);) + v
+        });
+    }
+
+    // let a2 = vec![1, 2, 3]; // <-- This vector got converted into below vector underthehood which is a macro which creates code automatically.
+    // let mut v1 = Vec::new();
+    // v1.push(1);
+    // v1.push(2);
+    // v1.push(5);
+
+    //
+    let mut foods = vec!["Cake", "Pizza", "Mango", "Rice"];
+    foods.push("Drago fruits");
+    println!("foods are: {foods:?}");
+
+    let last_foods = foods.pop();
+    println!("Popping foods from last: {last_foods:?}");
+
+    fruits.remove(1):
+    println!("foods are: {fruits:?}");
 }
