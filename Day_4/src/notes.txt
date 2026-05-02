@@ -1,4 +1,4 @@
-Common Methods of Vectors in Rust:
+# Common Methods of Vectors in Rust:
 - len(): returns the number of elements in the vector. 
 - is_empty(): Returns true if the vector is empty, false otherwise. 
 - contains(): return true if the vector contains a specific element, false otherwise. 
