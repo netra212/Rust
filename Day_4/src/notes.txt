@@ -1,0 +1,13 @@
+Common Methods of Vectors in Rust:
+- len(): returns the number of elements in the vector. 
+- is_empty(): Returns true if the vector is empty, false otherwise. 
+- contains(): return true if the vector contains a specific element, false otherwise. 
+- iter(): return an iterator over the vector's elements. 
+- push(): Add an elements to the end of the vector. 
+- pop(): remove and returns the last element of the vector. 
+- remove(): Removes the element at the specified index and returns it. 
+- get(): return a reference to the element at the specified index, or None if the index is out of bounds. 
+- get_mut(): returns a mutable reference to the element at the specified index, or None if the index is out of bounds. 
+- sort(): sorts the elements of the vectors in ascending order. 
+- reverse(): reverse the order of the elements in the vector. 
+- clear(): clears the vector, removing all values. 
