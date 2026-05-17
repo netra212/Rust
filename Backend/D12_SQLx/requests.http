@@ -1,6 +1,28 @@
 GET http://localhost:8000/todos
 
 ###
+
 GET http://localhost:8000/todos/1
 
 ###
+
+POST http://localhost:8000/todos
+Content-Type: application/json
+
+{
+    "text": "Buy groceries"
+}
+
+###
+
+PATCH http://localhost:8000/todos/1
+Content-Type: application/json
+
+{
+    "text": "Buy more groceries"
+}
+
+###
+
+DELETE http://localhost:8000/todos/2
+
