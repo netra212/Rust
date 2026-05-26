@@ -15,7 +15,7 @@ struct Character {
 struct Book {
     pub title: String,
     pub author: String,
-    pub author: i32,
+    pub year: i32,
 }
 
 impl Book {
@@ -95,6 +95,15 @@ fn print_direction(direction: Direction) {
         Direction::East => println!("The direction is EAST."),
         Direction::West => println!("The direction is WEST."),
     }
+}
+
+enum IpAddressKind {
+    ipV4,
+    ipV6,
+}
+
+fn route(ip_kind: IpAddressKind) {
+    match ip_kind {}
 }
 
 pub struct Movies {
