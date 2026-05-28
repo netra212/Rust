@@ -6,8 +6,9 @@ pub fn Header() -> impl IntoView {
         <header>
             <nav class="flex-gap-4 bg-neutral-50">
                 <a href="/">"Home"</a>
-                <a href="/">"User"</a>
-                <a href="/">"Contact"</a>
+                <a href="/user">"User"</a>
+                <a href="/user/123">"User"</a>
+                <a href="/page-query?demo=rust-is-awesome">"Query"</a>
             </nav>
         </header>
     }

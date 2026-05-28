@@ -6,7 +6,11 @@ use leptos_router::{
 
 use crate::{
     component::page_header::header,
-    routing::{page_home::PageHome,page_user::PageUser, page_users_params::PageUserParam}, 
+    routing::{
+        page_home::PageHome,
+        page_user::PageUser, page_users_params::PageUserParam
+        page_query::PageQuery
+    }, 
     utils::param::PARAM,
 };
 
@@ -21,6 +25,7 @@ pub fn App() -> impl IntoView {
                     <Route path=StaticSegment("/user/123") view=PageUser/>
                     <Route path=(StaticSegment("/user/123"), ParamSegment(PARAM::NAME)) view=PageUserParam/>
                     <Route path=(StaticSegment("/user/123"), ParamSegment(PARAM::ID)) view=PageUserParam/>
+                    <Route path=StaticSegment("/page-quer") view=PageQuery/>
             </Routes>
         </main
         </Router>
