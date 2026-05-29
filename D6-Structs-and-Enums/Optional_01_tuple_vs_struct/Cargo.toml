@@ -1,0 +1,11 @@
+[package]
+name = "W2_D6_Optional_tuple_vs_struct"
+version = "0.1.0"
+edition = "2024"
+[dependencies]
+
+[features]
+solution = []
+
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(solution_exists)'] }
