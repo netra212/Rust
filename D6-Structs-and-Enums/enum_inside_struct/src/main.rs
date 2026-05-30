@@ -1,6 +1,3 @@
-#[cfg(test)]
-mod setup;
-
 enum OrderStatus {
     Pending,
     Processing,
