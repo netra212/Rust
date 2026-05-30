@@ -1,0 +1,11 @@
+[package]
+name = "W2_D7_02_option_get_method_array"
+version = "0.1.0"
+edition = "2024"
+[features]
+solution = []
+
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(solution_exists)'] }
+
+[dependencies]
