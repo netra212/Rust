@@ -28,8 +28,8 @@ fn double_number(number: MyOption<i32>) -> MyOption<i32> {
 
 #[derive(Debug)]
 enum MyResult<T, E> {
-    Ok(T),
-    Err(E),
+    Ok(T),  // success, with value T.
+    Err(E), // error, with value E.
 }
 
 type MyError = &'static str;
@@ -47,13 +47,10 @@ fn read_file_contents(path: &str) -> MyResult<String, std::io::Error> {
         Ok(f) => f,
         Err(e) => return MyResult::Err(e),
     };
-
     let mut contents = String::new();
-
     if let Err(e) = file.read_to_string(&mut contents) {
         return MyResult::Err(e);
     }
-
     MyResult::Ok(contents)
 }
 
@@ -78,7 +75,7 @@ fn main() {
     let third_books = books.get(2);
     println!("Third Book is: {third_books:?}");
 
-    let number1 = MyOption::Some(5);
+    let number1: MyOption<i32> = MyOption::Some(5);
     let number2: MyOption<i32> = MyOption::None;
 
     println!("Double Some(5): {:?}", double_number(number1));
