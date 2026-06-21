@@ -1,6 +1,5 @@
 use anyhow::{Context, Result};
 use std::fmt::{self, format};
-use std::mem::type_info::Float;
 use thiserror::Error;
 
 /**
@@ -159,4 +158,11 @@ fn main() {
     // chaining success.
     let result = parse("5").and_then(double);
     println!("{:?}", result);
+
+    let result1 = parse("abc").and_then(double);
+    println!("{:?}", result1);
+
+    // Fallback.
+    let result2 = parse("xyz").or_else(|_| Ok::<i32, String>(0));
+    println!("{:?}", result2);
 }
