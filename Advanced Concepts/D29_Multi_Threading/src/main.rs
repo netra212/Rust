@@ -8,8 +8,9 @@ use std::os::unix::thread;
 -> when we don't want to mutate the data.
 */
 use std::rc::Rc;
+use std::sync::Mutex;
+use std::sync::{Arc, Mutex};
 use std::time::{Duration, Instant};
-
 struct Balloon {
     color: String,
 }
@@ -121,6 +122,64 @@ fn main() {
     println!("====================================\n");
 
     multi_thread_example();
+
+    //
+    println!("Kids sharing a Toy Box.!\n");
+
+    // Create our special toy box with a teddy bear.
+    let toy_box = Mutex::new("Teddy Bear");
+
+    // Child 1 wants to play.
+    {
+        let mut my_turn = toy_box.lock().unwrap();
+        println!("Child 1: Yay! I got the {}!", my_turn);
+        *my_turn = "Happy Teddy Bear"; // Child 1 makes the teddy happy.
+        println!("Child 1: I made it a {}!", my_turn);
+    }
+
+    println!("Toy is back in the box!\n");
+
+    // Child 2's turn.
+    {
+        let my_turn = toy_box.lock().unwrap();
+        println!("Child 2: Look! the teddy is {}!", my_turn);
+    } // Toy goes back again. 
+
+    println!("Multiple kids sharing a toy box.!\n");
+
+    // create a toy box that can be shared between kids (thread).
+    let toy_box = Arc::new(Mutex::new("Teddy Bear"));
+    let mut handles = vec![];
+
+    // Each kid wants to play.
+    for kid_number in 1..=3 {
+        let my_toy_box = Arc::clone(&toy_box);
+
+        let handle = thread::spawn(move || {
+            // kid tries to get the toy.
+            let mut my_turn = my_toy_box.lock().unwrap();
+
+            println!("Kid {}: Yay! I got the {}!", kid_number, my_turn);
+
+            // Kid plays with toy for a while.
+            thread::sleep(Duration::from_secs(1));
+
+            // Kid makes the toy happy.
+            *my_turn = "Happy Teddy bear";
+
+            println!("Kid {}: I made it a {}!", kid_number, my_turn);
+
+            // When my_turn is dropped here, the toy goes back in the box.!
+        });
+        handles.push(handle);
+    }
+
+    // Wait for all kids to finish playing.
+    for handle in handles {
+        handle.join().unwrap();
+    }
+
+    println!("All kidns finished playing..!");
 }
 
 fn download_file() {
