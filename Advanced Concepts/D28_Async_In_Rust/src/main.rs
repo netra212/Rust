@@ -1,4 +1,6 @@
 use std::future::Future;
+use std::pin::Pin;
+use std::task::{Context, Poll};
 use tokio::time::{Duration, sleep};
 
 /**
@@ -49,6 +51,28 @@ async fn non_blocking_task(id: i32) {
     println!("Non-Blocking task {} finished", id);
 }
 
+// Custom Future that counts to 3.
+struct CounterFuture {
+    count: u32,
+}
+
+impl Future for CounterFuture {
+    type Output = u32;
+
+    fn poll(mut self: Pin<&mut Self>, cx: &mut Context) -> Poll<Self::Output> {
+        self.count += 1;
+        println!("Polling... count is now {}", self.count);
+
+        if self.count < 3 {
+            // Not ready yet - wake ourselves to be polled again.
+            cx.waker().wake_by_ref();
+            Poll::Pending
+        } else {
+            // Ready
+            Poll::Ready(self.count)
+        }
+    }
+}
 #[tokio::main]
 async fn main() {
     println!("=== Regular Function ===");
@@ -92,4 +116,22 @@ async fn main() {
     println!();
 
     println!("=== With Cancellation ===");
+
+    // create a task handle.
+    let task = tokio::spawn(long_running_task(2));
+
+    // Let ir run for a bit.
+    println!("Cancelling tasks 2...");
+    task.abort();
+
+    // Check if cancelled.
+    match task.await {
+        Ok(_) => println!("Task completed normally"),
+        Err(e) if e.is_cancelled() => println!("Task was cancelled"),
+        Err(e) => println!("Task failed: {}", e),
+    }
+
+    let future1 = CounterFuture { count: 0 };
+    let res1 = future1.await;
+    println!("Final Result: {}", result);
 }
