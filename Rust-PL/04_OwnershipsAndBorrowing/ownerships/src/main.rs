@@ -35,15 +35,14 @@ fn main() {
     let mut s1 = String::from("Hello netra");
     let s2 = s1.clone(); // This is an expensive operation. If we do want to deeply copy the heap data of the String, not just stack data, we can use a common method called clone. 
     // Now, I can push into s2.
-    s2.push_str("This is s2");
+    // s2.push_str("This is s2");
 
-    /**
-     * In Rust, String is made up of three parts.
-     * 1.) a pointer to the memory.
-     * 2.) length.
-     * 3.) capacity: total amount of memory in bytes, that the String has received from the allocator.
-     */
-    //
+    // /**
+    //  * In Rust, String is made up of three parts.
+    //  * 1.) a pointer to the memory.
+    //  * 2.) length.
+    //  * 3.) capacity: total amount of memory in bytes, that the String has received from the allocator.
+    //  */
     let num = 10;
     let result = add(num);
 
@@ -53,7 +52,7 @@ fn main() {
     let s = gives_ownerships();
 
     let s2 = takes_and_gives_back(s);
-    println!("s2 = ", { s2 });
+    // println!("s2 = ", { s2 });
 
     take_ownership(name);
 
@@ -85,6 +84,6 @@ fn add(x: i32) -> i32 {
 }
 
 fn takes_and_gives_back(s: String) -> String {
-    println!("S in takes_and_gives_back: ", { s });
+    // println!("S in takes_and_gives_back: ", { s });
     s
 }
