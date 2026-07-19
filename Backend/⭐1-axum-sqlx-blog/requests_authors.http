@@ -1,0 +1,29 @@
+GET http://localhost:8000/authors
+
+###
+
+GET http://localhost:8000/authors/1
+
+###
+
+POST http://localhost:8000/authors
+Content-Type: application/json
+
+{
+    "name": "New Author",
+    "email": "new.author@example.com"
+}
+
+###
+
+PATCH http://localhost:8000/authors/1
+Content-Type: application/json
+
+{
+    "name": "Updated Author Name"
+}
+
+###
+
+DELETE http://localhost:8000/authors/3
+
