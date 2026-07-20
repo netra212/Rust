@@ -1,0 +1,31 @@
+[package]
+name = "W3_D13_2-sqlx-stored-procedures"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+
+
+[workspace] # ✅ This tells the compiler not to look parent.
+
+[lib]
+name = "W3_D13_2_sqlx_stored_procedures"
+path = "src/lib.rs"
+
+[dependencies]
+axum = "0.8"
+serde = { version = "1", features = ["derive"] }
+tokio = { version = "1", features = ["full"] }
+tower = { version = "0.5", features = ["util", "timeout"] }
+tower-http = { version = "0.6", features = ["add-extension", "trace"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+sqlx = { version = "0.8", features = ["runtime-tokio-rustls", "postgres", "time", "uuid"] }
+dotenvy = "0.15"
+time = { version = "0.3", features = ["serde", "macros"] }
+thiserror = "2"
+serde_json = "1"
+
+[dev-dependencies]
+http-body-util = "0.1"
+tower = { version = "0.5", features = ["util"] }
