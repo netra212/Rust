@@ -1,0 +1,36 @@
+GET http://localhost:8000/blogs
+
+###
+
+GET http://localhost:8000/blogs/1
+
+###
+
+# -> Get all blogs for a specific author
+GET http://localhost:8000/authors/1/blogs
+
+###
+
+POST http://localhost:8000/blogs
+Content-Type: application/json
+
+{
+    "title": "My New Blog Post",
+    "content": "This is the content of my new blog post about web development.",
+    "author_id": 1
+}
+
+###
+
+PATCH http://localhost:8000/blogs/1
+Content-Type: application/json
+
+{
+    "title": "Updated Blog Title",
+    "content": "Updated content for this blog post."
+}
+
+###
+
+DELETE http://localhost:8000/blogs/5
+
