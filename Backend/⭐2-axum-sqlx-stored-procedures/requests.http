@@ -1,0 +1,17 @@
+### Get author statistics (author id 1)
+GET http://127.0.0.1:8000/stats/author/1
+
+### Get author statistics (author id 2)
+GET http://127.0.0.1:8000/stats/author/2
+
+### Get author statistics — not found
+GET http://127.0.0.1:8000/stats/author/999
+
+### Search blogs by keyword
+GET http://127.0.0.1:8000/stats/search?q=rust
+
+### Search blogs — another keyword
+GET http://127.0.0.1:8000/stats/search?q=axum
+
+### Search blogs — no results
+GET http://127.0.0.1:8000/stats/search?q=python
