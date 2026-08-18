@@ -40,6 +40,36 @@ fn distance_from_origin(
     ((x * x + y * y) as f64).sqrt()
 }
 
+enum Status {
+    Active, 
+    InActive, 
+    Pending,
+}
+
+fn describe(status: Status) -> &'static str {
+    match status {
+        Status::Active => "active", 
+        Status::InActive => "inactive",
+        Status::Pendig => "pending", 
+        // All variants covered - no _ needed
+    }
+}
+
+// for open-ended types, use catchal. 
+fn describe_number(n: i32) -> &'static str {
+    match n {
+        0 => "zero", 
+        1 => "one", 
+        2 => "two", 
+        _ => "many", // Required for i32
+    }
+}
+
+enum OptionPair {
+    None, 
+    Some((i32, i32)),
+}
+
 fn main() {
     let number = 13;
 
@@ -307,6 +337,30 @@ fn main() {
                     .sum();
     println!("Sum: {}", sum);
     print_coordinates(&(3, 5));
+
+    //---------------------------------
+    // Exhaustive Matching
+    //---------------------------------
+    println!("{}", describe(Status::Active));
+    println!("{}", describe_number(42));
+
+    //---------------------------------
+    // Nested Patterns
+    //---------------------------------
+    let value = OptionPair::Some((1, 2));
+
+    match value {
+        OptionPair::None => println!("None"), 
+        OptionPair::Some((0, _)) => println!("First is zero"),
+        OptionPair::Some((_, 0)) => println!("Second is zero"), 
+        OptionPair::Some((x, y)) => println!("Pair: ({}, {})", x, y),
+    }
+
+    // Deeply nested. 
+    let deep = Some(Some(Some(42)));
+    if let Some(Some(value)) = deep {
+        println!("Deep value: {}", value);
+    }
 }
 
 
