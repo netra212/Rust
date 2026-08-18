@@ -26,6 +26,20 @@ fn process(msg: Message) {
     }
 }
 
+// Destructure in parameters.
+fn print_coordinates(&(x, y): (i32, i32)) {
+    println!("({}, {})", x, y);
+}
+
+// with structs. 
+struct Point {x: i32, y: i32}
+
+fn distance_from_origin(
+    Point { x, y}: &Point
+) -> f64 {
+    ((x * x + y * y) as f64).sqrt()
+}
+
 fn main() {
     let number = 13;
 
@@ -243,4 +257,56 @@ fn main() {
 
     // Underscore prefix for unused variables. 
     let _unused = 42; // No warning about unused variable. 
+
+    //------------------------
+    // References Patterns. 
+    //------------------------
+    // Match and work with references. 
+    let reference = &4;
+    match reference {
+        &val => println!("Got value: {}", val),
+    }
+    // ref keyword to create reference in pattern. 
+    let value = 5;
+    match value {
+        ref r => println!("Got reference to {}", r),
+    }
+
+    // ref mut for mutable reference. 
+    let mut value = 5;
+    match value {
+        ref mut r => {
+            *r += 1;
+            println!("Modified to {}", r);
+        }
+    }
+
+    // In struct patterns. 
+    struct Data {
+        value: String, 
+    }
+    let data = Data {
+        value: String::from("hello")
+    }
+    match data {
+        Data { ref value } => {
+            println!("Borrowed: {}", value);
+        }
+    }
+    // data is still valid here because we only borrowed value. 
+
+    //---------------------------------
+    // Patterns in Function Parameters
+    //---------------------------------
+
+    // With closures. 
+    let points = vec![(0, 0), (1, 1), (2, 2)];
+    let sum: i32 = points
+                    .iter()
+                    .map(|(x, y)| x + y)
+                    .sum();
+    println!("Sum: {}", sum);
+    print_coordinates(&(3, 5));
 }
+
+
